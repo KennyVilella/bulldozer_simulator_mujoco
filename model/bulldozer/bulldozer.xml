@@ -1,0 +1,99 @@
+<!-- Bulldozer model
+
+This model implements a Bulldozer with functioning velocity actuation and
+textured meshes.
+
+Copyright, 2023, Vilella Kenny.
+-->
+
+<mujoco model="bulldozer">
+  <compiler meshdir="mesh" texturedir="texture"/>
+
+  <default>
+    <velocity ctrllimited="true" ctrlrange="-0.5 0.5"/>
+    <mesh scale="1 1 1"/>
+    <material emission="0.25" rgba="1 1 1 1"/>
+    <equality solref="0.0002 1"/>
+  </default>
+
+  <visual>
+    <headlight ambient="1 1 1" diffuse="0 0 0" specular="0 0 0"/>
+  </visual>
+
+  <asset>
+    <mesh file="caterpillar.obj"/>
+    <texture name="caterpillar" type="2d" file="caterpillar_texture.png"/>
+    <material name="caterpillar" emission="1" texture="caterpillar"/>
+
+    <mesh file="chassis.obj"/>
+    <texture name="chassis" type="2d" file="chassis_texture.png"/>
+    <material name="chassis" emission="1" texture="chassis"/>
+
+    <mesh file="chassis_blade_piston_rod.obj"/>
+    <texture name="chassis_blade_piston_rod" type="2d" file="chassis_blade_piston_rod_texture.png"/>
+    <material name="chassis_blade_piston_rod" emission="1" texture="chassis_blade_piston_rod"/>
+
+    <mesh file="blade.obj"/>
+    <texture name="blade" type="2d" file="blade_texture.png"/>
+    <material name="blade" emission="1" texture="blade"/>
+
+    <mesh file="caterpillar_arm.obj"/>
+    <texture name="caterpillar_arm" type="2d" file="caterpillar_arm_texture.png"/>
+    <material name="caterpillar_arm" emission="1" texture="caterpillar_arm"/>
+
+    <mesh file="caterpillar_blade_piston_tube.obj"/>
+    <texture name="caterpillar_blade_piston_tube" type="2d" file="caterpillar_blade_piston_tube_texture.png"/>
+    <material name="caterpillar_blade_piston_tube" emission="1" texture="caterpillar_blade_piston_tube"/>
+
+    <mesh file="caterpillar_blade_piston_rod.obj"/>
+    <texture name="caterpillar_blade_piston_rod" type="2d" file="caterpillar_blade_piston_rod_texture.png"/>
+    <material name="caterpillar_blade_piston_rod" emission="1" texture="caterpillar_blade_piston_rod"/>
+  </asset>
+
+  <worldbody>
+    <geom type="plane" size="3 3 .01"/>
+
+    <!-- Caterpillar -->
+    <body name="caterpillar" pos="0 0 0.040" euler="0 0 0">
+      <joint type="free" limited='false' damping="0" stiffness="1" armature="0"/>
+      <geom name="caterpillar" type="mesh" mesh="caterpillar"
+            material="caterpillar" pos="0 0 0" euler="0 0 0"/>
+
+      <!-- Chassis -->
+      <body name="chassis" pos="0 0 0.722" euler="0 0 0">
+        <geom name="chassis" type="mesh" mesh="chassis" material="chassis"
+              pos="0 0 0" euler="0 0 0"/>
+
+        <!-- Chassis/Blade piston rod -->
+        <body name="chassis_blade_piston_rod" pos="2.544 0 1.301" euler="0 70.559 0">
+          <geom name="chassis_blade_piston_rod" type="mesh" mesh="chassis_blade_piston_rod"
+                material="chassis_blade_piston_rod" pos="0 0 0" euler="0 0 0"/>
+
+          <!-- Blade -->
+          <body name="blade" pos="1.649 0 0" euler="0 -70.559 0">
+            <geom name="blade" type="mesh" mesh="blade"
+                  material="blade" pos="0 0 0" euler="0 0 0"/>
+
+            <!-- Caterpillar arm -->
+            <body name="caterpillar_arm" pos="0.16 0 -0.015" euler="0 4.754 0">
+              <geom name="caterpillar_arm" type="mesh" mesh="caterpillar_arm"
+                    material="caterpillar_arm" pos="0 0 0" euler="0 0 0"/>
+
+              <!-- Caterpillar/Blade piston tube -->
+              <body name="catterpilar_blade_piston_tube" pos="-1.661 0 0.322" euler="0 -26.387 0">
+                <geom name="caterpillar_blade_piston_tube" type="mesh" mesh="caterpillar_blade_piston_tube"
+                      material="caterpillar_blade_piston_tube" pos="0 0 0" euler="0 0 0"/>
+
+                <!-- Caterpillar/Blade piston rod -->
+                <body name="catterpilar_blade_piston_rod" pos="1.032 0 0" euler="0 0 0">
+                  <geom name="caterpillar_blade_piston_rod" type="mesh" mesh="caterpillar_blade_piston_rod"
+                        material="caterpillar_blade_piston_rod" pos="0 0 0" euler="0 0 0"/>
+                </body> <!-- Caterpillar/Blade piston rod -->
+              </body> <!-- Caterpillar/Blade piston tube -->
+            </body> <!-- Caterpillar arm-->
+          </body> <!-- Blade -->
+        </body> <!-- Chassis/Blade piston rod -->
+      </body> <!-- Chassis -->
+    </body> <!-- Caterpillar -->
+  </worldbody>
+</mujoco>
