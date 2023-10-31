@@ -62,6 +62,28 @@ Copyright, 2023, Vilella Kenny.
       <geom name="caterpillar" type="mesh" mesh="caterpillar"
             material="caterpillar" pos="0 0 0" euler="0 0 0"/>
 
+      <!-- Caterpillar arm -->
+      <body name="caterpillar_arm" pos="-1.09 0 0.815" euler="0 4.754 0">
+        <joint name="caterpillar_arm" type="hinge" axis="0 1 0" pos="0 0 0"/>
+        <geom name="caterpillar_arm" type="mesh" mesh="caterpillar_arm"
+              material="caterpillar_arm" pos="0 0 0" euler="0 0 0"/>
+
+        <!-- Caterpillar/Blade piston tube -->
+        <body name="caterpillar_blade_piston_tube" pos="2.700 0 0.322" euler="0 -26.387 0">
+          <joint name="caterpillar_blade_piston_tube" type="hinge" axis="0 1 0" pos="0 0 0"/>
+          <geom name="caterpillar_blade_piston_tube" type="mesh" mesh="caterpillar_blade_piston_tube"
+                material="caterpillar_blade_piston_tube" pos="0 0 0" euler="0 0 0"/>
+
+          <!-- Caterpillar/Blade piston rod -->
+          <body name="caterpillar_blade_piston_rod" pos="1.032 0 0" euler="0 0 0">
+            <joint name="caterpillar_blade_piston_rod" type="slide" axis="1 0 0" limited="true"
+                   ref="1.032" range="0.9 1.35" pos="0 0 0"/>
+            <geom name="caterpillar_blade_piston_rod" type="mesh" mesh="caterpillar_blade_piston_rod"
+                  material="caterpillar_blade_piston_rod" pos="0 0 0" euler="0 0 0"/>
+          </body> <!-- Caterpillar/Blade piston rod -->
+        </body> <!-- Caterpillar/Blade piston tube -->
+      </body> <!-- Caterpillar arm-->
+
       <!-- Chassis -->
       <body name="chassis" pos="0 0 0.722" euler="0 0 0">
         <geom name="chassis" type="mesh" mesh="chassis" material="chassis"
@@ -79,28 +101,6 @@ Copyright, 2023, Vilella Kenny.
             <joint name="blade" type="hinge" axis="0 1 0" pos="0 0 0"/>
             <geom name="blade" type="mesh" mesh="blade"
                   material="blade" pos="0 0 0" euler="0 0 0"/>
-
-            <!-- Caterpillar arm -->
-            <body name="caterpillar_arm" pos="0.16 0 -0.015" euler="0 4.754 0">
-              <joint name="caterpillar_arm" type="hinge" axis="0 1 0" pos="0 0 0"/>
-              <geom name="caterpillar_arm" type="mesh" mesh="caterpillar_arm"
-                    material="caterpillar_arm" pos="0 0 0" euler="0 0 0"/>
-
-              <!-- Caterpillar/Blade piston tube -->
-              <body name="caterpillar_blade_piston_tube" pos="-1.661 0 0.322" euler="0 -26.387 0">
-                <joint name="caterpillar_blade_piston_tube" type="hinge" axis="0 1 0" pos="0 0 0"/>
-                <geom name="caterpillar_blade_piston_tube" type="mesh" mesh="caterpillar_blade_piston_tube"
-                      material="caterpillar_blade_piston_tube" pos="0 0 0" euler="0 0 0"/>
-
-                <!-- Caterpillar/Blade piston rod -->
-                <body name="caterpillar_blade_piston_rod" pos="1.032 0 0" euler="0 0 0">
-                  <joint name="caterpillar_blade_piston_rod" type="slide" axis="1 0 0" limited="true"
-                         ref="1.032" range="0.9 1.35" pos="0 0 0"/>
-                  <geom name="caterpillar_blade_piston_rod" type="mesh" mesh="caterpillar_blade_piston_rod"
-                        material="caterpillar_blade_piston_rod" pos="0 0 0" euler="0 0 0"/>
-                </body> <!-- Caterpillar/Blade piston rod -->
-              </body> <!-- Caterpillar/Blade piston tube -->
-            </body> <!-- Caterpillar arm-->
           </body> <!-- Blade -->
         </body> <!-- Chassis/Blade piston rod -->
       </body> <!-- Chassis -->
@@ -108,7 +108,7 @@ Copyright, 2023, Vilella Kenny.
   </worldbody>
 
   <equality>
-    <connect body1="caterpillar_arm" body2="caterpillar" anchor="-4.361 0 0"/>
+    <connect body1="caterpillar_arm" body2="blade" anchor="4.361 0 0"/>
     <connect body1="caterpillar_blade_piston_rod" body2="blade" anchor="0.644 0 0"/>
   </equality>
 
@@ -119,6 +119,7 @@ Copyright, 2023, Vilella Kenny.
     <exclude body1="caterpillar_arm" body2="caterpillar"/>
     <exclude body1="caterpillar_arm" body2="chassis"/>
     <exclude body1="caterpillar_arm" body2="chassis_blade_piston_rod"/>
+    <exclude body1="caterpillar_arm" body2="blade"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="caterpillar"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="chassis"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="chassis_blade_piston_rod"/>
@@ -133,7 +134,6 @@ Copyright, 2023, Vilella Kenny.
   </contact>
 
   <actuator>
-    <velocity name="Blade height" joint="chassis_blade_piston_rod" kv="900000"/>
     <velocity name="Blade inclination" joint="caterpillar_blade_piston_rod" kv="800000"/>
   </actuator>
 </mujoco>
