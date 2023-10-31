@@ -116,20 +116,14 @@ Copyright, 2023, Vilella Kenny.
   collision algorithm seems to consider that they are colliding with other
   bodies. It is thus necessary to remove collision.-->
   <contact>
-    <exclude body1="caterpillar_arm" body2="caterpillar"/>
-    <exclude body1="caterpillar_arm" body2="chassis"/>
     <exclude body1="caterpillar_arm" body2="chassis_blade_piston_rod"/>
     <exclude body1="caterpillar_arm" body2="blade"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="caterpillar"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="chassis"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="chassis_blade_piston_rod"/>
     <exclude body1="caterpillar_blade_piston_tube" body2="blade"/>
-    <exclude body1="caterpillar_blade_piston_rod" body2="caterpillar"/>
-    <exclude body1="caterpillar_blade_piston_rod" body2="chassis"/>
     <exclude body1="caterpillar_blade_piston_rod" body2="chassis_blade_piston_rod"/>
     <exclude body1="caterpillar_blade_piston_rod" body2="blade"/>
-    <exclude body1="blade" body2="chassis_blade_piston_rod"/>
-    <exclude body1="blade" body2="chassis"/>
     <exclude body1="blade" body2="floor"/>
   </contact>
 
