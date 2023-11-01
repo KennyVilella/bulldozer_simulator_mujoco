@@ -53,4 +53,5 @@ findorfetch(
   EXCLUDE_FROM_ALL
 )
 
+add_subdirectory(plugin/soil)
 add_subdirectory(bulldozer_simulator)
