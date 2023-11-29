@@ -118,7 +118,7 @@ Soil::Soil(const mjModel* m, mjData* d, int instance) {
     mj_setState(m, d, soil_state.data(), spec);
 
     // Setting initial terrain
-    sim.init(sim_out, grid, amp_noise);
+    sim.Init(sim_out, grid, amp_noise);
 
     // Setting hfield with initial terrain
     int n_hfield_terrain = (
@@ -149,7 +149,7 @@ void Soil::Compute(const mjModel* m, mjData* d, int instance) {
         static_cast<float>(-d->xquat[4*blade_id+3])};
 
     // Stepping the soil_simulator
-    bool soil_update = sim.step(
+    bool soil_update = sim.Step(
         sim_out, pos, ori, grid, body, sim_param, 1e-5);
 
     if (soil_update) {
