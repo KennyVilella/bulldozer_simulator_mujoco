@@ -7,7 +7,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR
 
 # Version of soil_dynamics_cpp
-soil_version="v1.0.0"
+soil_version="v1.1.0"
 
 # Copy the soil simulator if not already present
 if [ ! -d "plugin/soil/soil_dynamics_cpp" ]; then
