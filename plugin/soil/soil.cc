@@ -140,7 +140,7 @@ void Soil::Compute(const mjModel* m, mjData* d, int instance) {
     // Getting blade position and orientation
     std::vector<float> pos = {
         static_cast<float>(d->xpos[3*blade_id]),
-        static_cast<float>(d->xpos[3*blase_id+1]),
+        static_cast<float>(d->xpos[3*blade_id+1]),
         static_cast<float>(d->xpos[3*blade_id+2])};
     std::vector<float> ori = {
         static_cast<float>(d->xquat[4*blade_id]),
