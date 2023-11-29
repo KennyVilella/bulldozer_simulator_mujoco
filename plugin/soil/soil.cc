@@ -96,11 +96,11 @@ Soil::Soil(const mjModel* m, mjData* d, int instance) {
 
     // Initalizing the simulated blade
     std::vector<float> o_pos_init = {0.0, 0.0, 0.0};
-    std::vector<float> j_pos_init = {0.0, 0.0, 0.0};
-    std::vector<float> b_pos_init = {0.7, 0.0, -0.5};
-    std::vector<float> t_pos_init = {-0.14, 0.0, -0.97};
-    float blade_width = 0.68;
-    body = new soil_simulator::Body(
+    std::vector<float> j_pos_init = {0.9, 0.0, 0.2};
+    std::vector<float> b_pos_init = {0.75, 0.0, 1.5};
+    std::vector<float> t_pos_init = {1.6, 0.0, -0.4};
+    float blade_width = 4.5;
+    body = new soil_simulator::Blade(
         o_pos_init, j_pos_init, b_pos_init, t_pos_init, blade_width);
 
     // Initalizing the simulation parameter
