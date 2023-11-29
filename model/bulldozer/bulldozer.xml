@@ -81,7 +81,7 @@ Copyright, 2023, Vilella Kenny.
     </body> <!-- Blade soil layer -->
 
     <!-- Caterpillar -->
-    <body name="caterpillar" pos="0 0 0.040" euler="0 0 0">
+    <body name="caterpillar" pos="0 0 0.10" euler="0 0 0">
       <joint type="free" limited='false' damping="0" stiffness="1" armature="0"/>
       <geom name="caterpillar" type="mesh" mesh="caterpillar"
             material="caterpillar" pos="0 0 0" euler="0 0 0"/>
