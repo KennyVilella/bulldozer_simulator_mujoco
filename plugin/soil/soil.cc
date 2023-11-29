@@ -100,7 +100,7 @@ Soil::Soil(const mjModel* m, mjData* d, int instance) {
     std::vector<float> b_pos_init = {0.75, 0.0, 1.5};
     std::vector<float> t_pos_init = {1.6, 0.0, -0.4};
     float blade_width = 4.5;
-    body = new soil_simulator::Blade(
+    blade = new soil_simulator::Blade(
         o_pos_init, j_pos_init, b_pos_init, t_pos_init, blade_width);
 
     // Initalizing the simulation parameter
@@ -150,7 +150,7 @@ void Soil::Compute(const mjModel* m, mjData* d, int instance) {
 
     // Stepping the soil_simulator
     bool soil_update = sim.Step(
-        sim_out, pos, ori, grid, body, sim_param, 1e-5);
+        sim_out, pos, ori, grid, blade, sim_param, 1e-5);
 
     if (soil_update) {
         // Allowing the visual update of the terrain

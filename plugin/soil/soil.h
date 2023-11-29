@@ -32,7 +32,7 @@ class Soil {
      Soil(const mjModel* m, mjData* d, int instance);
      soil_simulator::SoilDynamics sim;
      soil_simulator::Grid grid;
-     soil_simulator::Body *body;
+     soil_simulator::Blade *blade;
      soil_simulator::SimParam sim_param;
      soil_simulator::SimOut *sim_out;
 };
