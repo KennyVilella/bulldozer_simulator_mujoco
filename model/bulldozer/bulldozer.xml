@@ -362,7 +362,7 @@ Copyright, 2023, Vilella Kenny.
 
   <actuator>
     <velocity name="Blade inclination" joint="caterpillar_blade_piston_rod" kv="800000"/>
-    <motor name="left crawler" tendon="left crawler" gear="200" ctrlrange="-1 1"/>
-    <motor name="right crawler" tendon="right crawler" gear="200" ctrlrange="-1 1"/>
+    <motor name="left crawler" tendon="left crawler" gear="100" ctrlrange="-1 1"/>
+    <motor name="right crawler" tendon="right crawler" gear="100" ctrlrange="-1 1"/>
   </actuator>
 </mujoco>
