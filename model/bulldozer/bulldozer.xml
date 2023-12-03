@@ -9,6 +9,18 @@ Copyright, 2023, Vilella Kenny.
 <mujoco model="bulldozer">
   <compiler meshdir="mesh" texturedir="texture"/>
 
+  <extension>
+    <plugin plugin="mujoco.soil">
+      <instance name="terrain">
+        <config key="cell_size_z" value="0.05"/>
+        <config key="repose_angle" value="0.85"/>
+        <config key="max_iterations" value="10"/>
+        <config key="cell_buffer" value="4"/>
+        <config key="amp_noise" value="50.0"/>
+      </instance>
+    </plugin>
+  </extension>
+
   <default>
     <velocity ctrllimited="true" ctrlrange="-0.5 0.5"/>
     <mesh scale="1 1 1"/>
@@ -21,6 +33,12 @@ Copyright, 2023, Vilella Kenny.
   </visual>
 
   <asset>
+    <hfield name="terrain" nrow="320" ncol="320" size="8.0 8.0 12.0 4.0"/>
+    <hfield name="blade soil" nrow="320" ncol="320" size="8.0 8.0 12.0 0.01"/>
+
+    <texture name="floor" type="2d" file="floor_texture.png"/>
+    <material name="floor" emission="1" texrepeat="10 10" texture="floor"/>
+
     <mesh file="caterpillar.obj"/>
     <texture name="caterpillar" type="2d" file="caterpillar_texture.png"/>
     <material name="caterpillar" emission="1" texture="caterpillar"/>
@@ -53,11 +71,17 @@ Copyright, 2023, Vilella Kenny.
   <worldbody>
     <!-- Floor -->
     <body name="floor" pos="0 0 0" euler="0 0 0">
-      <geom type="plane" size="3 3 .01"/>
+      <geom name="terrain" type="hfield" hfield="terrain" material="floor"/>
     </body> <!-- Floor -->
 
+    <!-- Blade soil layer -->
+    <body name="soil" pos="0 0 0" euler="0 0 0">
+      <geom name="blade soil" type="hfield" hfield="blade soil"
+          material="floor" contype="0" conaffinity="0"/>
+    </body> <!-- Blade soil layer -->
+
     <!-- Caterpillar -->
-    <body name="caterpillar" pos="0 0 0.040" euler="0 0 0">
+    <body name="caterpillar" pos="0 0 0.10" euler="0 0 0">
       <joint type="free" limited='false' damping="0" stiffness="1" armature="0"/>
       <geom name="caterpillar" type="mesh" mesh="caterpillar"
             material="caterpillar" pos="0 0 0" euler="0 0 0"/>
@@ -125,6 +149,7 @@ Copyright, 2023, Vilella Kenny.
     <exclude body1="caterpillar_blade_piston_rod" body2="chassis_blade_piston_rod"/>
     <exclude body1="caterpillar_blade_piston_rod" body2="blade"/>
     <exclude body1="blade" body2="floor"/>
+    <exclude body1="blade" body2="soil"/>
   </contact>
 
   <actuator>
