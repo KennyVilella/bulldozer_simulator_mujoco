@@ -9,6 +9,8 @@ Copyright, 2023, Vilella Kenny.
 <mujoco model="bulldozer">
   <compiler meshdir="mesh" texturedir="texture"/>
 
+  <option timestep="0.001"/>
+
   <extension>
     <plugin plugin="mujoco.soil">
       <instance name="terrain">
@@ -25,7 +27,13 @@ Copyright, 2023, Vilella Kenny.
     <velocity ctrllimited="true" ctrlrange="-0.5 0.5"/>
     <mesh scale="1 1 1"/>
     <material emission="0.25" rgba="1 1 1 1"/>
-    <equality solref="0.0002 1"/>
+    <default class="wheel">
+      <geom type="cylinder" mass ="100000" size=".18 .3" group="1"
+            condim="6" friction="0.5 0.002 0.001" priority="1"/>
+    </default>
+    <default class="wheelslide">
+      <joint type="slide" axis="0 1 0" damping="0.3" limited="true" ref="0.0" range="-0.2 0.2" pos="0 0 0"/>
+    </default>
   </default>
 
   <visual>
@@ -33,8 +41,8 @@ Copyright, 2023, Vilella Kenny.
   </visual>
 
   <asset>
-    <hfield name="terrain" nrow="320" ncol="320" size="8.0 8.0 12.0 4.0"/>
-    <hfield name="blade soil" nrow="320" ncol="320" size="8.0 8.0 12.0 0.01"/>
+    <hfield name="terrain" nrow="320" ncol="320" size="16.0 16.0 12.0 4.0"/>
+    <hfield name="blade soil" nrow="320" ncol="320" size="16.0 16.0 12.0 0.01"/>
 
     <texture name="floor" type="2d" file="floor_texture.png"/>
     <material name="floor" emission="1" texrepeat="10 10" texture="floor"/>
@@ -81,7 +89,7 @@ Copyright, 2023, Vilella Kenny.
     </body> <!-- Blade soil layer -->
 
     <!-- Caterpillar -->
-    <body name="caterpillar" pos="0 0 0.10" euler="0 0 0">
+    <body name="caterpillar" pos="0 0 1.10" euler="0 0 0">
       <joint type="free" limited='false' damping="0" stiffness="1" armature="0"/>
       <geom name="caterpillar" type="mesh" mesh="caterpillar"
             material="caterpillar" pos="0 0 0" euler="0 0 0"/>
@@ -138,8 +146,160 @@ Copyright, 2023, Vilella Kenny.
           </body> <!-- Blade -->
         </body> <!-- Chassis/Blade piston rod -->
       </body> <!-- Chassis -->
+
+      <body name="left wheel 1" pos="-2.0 1.3 0.15" zaxis="0 1 0">
+        <joint class="wheelslide"/>
+        <joint name="left 1"/>
+        <geom class="wheel"/>
+      </body>
+        <body name="left wheel 2" pos="-1.6 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 2"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 3" pos="-1.2 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 3"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 4" pos="-0.8 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 4"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 5" pos="-0.4 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 5"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 6" pos="0.0 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 6"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 7" pos="0.4 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 7"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 8" pos="0.8 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 8"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 9" pos="1.2 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 9"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="left wheel 10" pos="1.6 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 10"/>
+          <geom name="left wheel 10" class="wheel"/>
+        </body>
+        <body name="left wheel 11" pos="2.0 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 11"/>
+          <geom name="left wheel 11" class="wheel"/>
+        </body>
+        <body name="left wheel 12" pos="-2.4 1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="left 12"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 1" pos="-2.0 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 1"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 2" pos="-1.6 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 2"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 3" pos="-1.2 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 3"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 4" pos="-0.8 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 4"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 5" pos="-0.4 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 5"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 6" pos="0.0 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 6"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 7" pos="0.4 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 7"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 8" pos="0.8 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 8"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 9" pos="1.2 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 9"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 10" pos="1.6 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 10"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 11" pos="2.0 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 11"/>
+          <geom class="wheel"/>
+        </body>
+        <body name="right wheel 12" pos="-2.4 -1.3 0.15" zaxis="0 1 0">
+          <joint class="wheelslide"/>
+          <joint name="right 12"/>
+          <geom class="wheel"/>
+        </body>
     </body> <!-- Caterpillar -->
   </worldbody>
+
+  <tendon>
+    <fixed name="left crawler">
+      <joint joint="left 1" coef="1000"/>
+      <joint joint="left 2" coef="1000"/>
+      <joint joint="left 3" coef="1000"/>
+      <joint joint="left 4" coef="1000"/>
+      <joint joint="left 5" coef="1000"/>
+      <joint joint="left 6" coef="1000"/>
+      <joint joint="left 7" coef="1000"/>
+      <joint joint="left 8" coef="1000"/>
+      <joint joint="left 9" coef="1000"/>
+      <joint joint="left 10" coef="1000"/>
+      <joint joint="left 11" coef="1000"/>
+      <joint joint="left 12" coef="1000"/>
+    </fixed>
+    <fixed name="right crawler">
+      <joint joint="right 1" coef="1000"/>
+      <joint joint="right 2" coef="1000"/>
+      <joint joint="right 3" coef="1000"/>
+      <joint joint="right 4" coef="1000"/>
+      <joint joint="right 5" coef="1000"/>
+      <joint joint="right 6" coef="1000"/>
+      <joint joint="right 7" coef="1000"/>
+      <joint joint="right 8" coef="1000"/>
+      <joint joint="right 9" coef="1000"/>
+      <joint joint="right 10" coef="1000"/>
+      <joint joint="right 11" coef="1000"/>
+      <joint joint="right 12" coef="1000"/>
+    </fixed>
+  </tendon>
 
   <equality>
     <connect body1="caterpillar_arm" body2="blade" anchor="4.361 0 0"/>
@@ -160,9 +320,35 @@ Copyright, 2023, Vilella Kenny.
     <exclude body1="caterpillar_blade_piston_rod" body2="blade"/>
     <exclude body1="blade" body2="floor"/>
     <exclude body1="blade" body2="soil"/>
+    <exclude body1="left wheel 1" body2="caterpillar"/>
+    <exclude body1="left wheel 2" body2="caterpillar"/>
+    <exclude body1="left wheel 3" body2="caterpillar"/>
+    <exclude body1="left wheel 4" body2="caterpillar"/>
+    <exclude body1="left wheel 5" body2="caterpillar"/>
+    <exclude body1="left wheel 6" body2="caterpillar"/>
+    <exclude body1="left wheel 7" body2="caterpillar"/>
+    <exclude body1="left wheel 8" body2="caterpillar"/>
+    <exclude body1="left wheel 9" body2="caterpillar"/>
+    <exclude body1="left wheel 10" body2="caterpillar"/>
+    <exclude body1="left wheel 11" body2="caterpillar"/>
+    <exclude body1="left wheel 12" body2="caterpillar"/>
+    <exclude body1="right wheel 1" body2="caterpillar"/>
+    <exclude body1="right wheel 2" body2="caterpillar"/>
+    <exclude body1="right wheel 3" body2="caterpillar"/>
+    <exclude body1="right wheel 4" body2="caterpillar"/>
+    <exclude body1="right wheel 5" body2="caterpillar"/>
+    <exclude body1="right wheel 6" body2="caterpillar"/>
+    <exclude body1="right wheel 7" body2="caterpillar"/>
+    <exclude body1="right wheel 8" body2="caterpillar"/>
+    <exclude body1="right wheel 9" body2="caterpillar"/>
+    <exclude body1="right wheel 10" body2="caterpillar"/>
+    <exclude body1="right wheel 11" body2="caterpillar"/>
+    <exclude body1="right wheel 12" body2="caterpillar"/>
   </contact>
 
   <actuator>
     <velocity name="Blade inclination" joint="caterpillar_blade_piston_rod" kv="800000"/>
+    <motor name="left crawler" tendon="left crawler" gear="100" ctrlrange="-1 1"/>
+    <motor name="right crawler" tendon="right crawler" gear="100" ctrlrange="-1 1"/>
   </actuator>
 </mujoco>
