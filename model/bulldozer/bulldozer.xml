@@ -85,18 +85,22 @@ Copyright, 2023, Vilella Kenny.
       <joint type="free" limited='false' damping="0" stiffness="1" armature="0"/>
       <geom name="caterpillar" type="mesh" mesh="caterpillar"
             material="caterpillar" pos="0 0 0" euler="0 0 0"/>
+      <inertial pos="-0.406 0 0.890" mass="12000"
+                fullinertia="25000 28500 44000 -7 3300 4"/>
 
       <!-- Caterpillar arm -->
       <body name="caterpillar_arm" pos="-1.09 0 0.815" euler="0 4.754 0">
         <joint name="caterpillar_arm" type="hinge" axis="0 1 0" pos="0 0 0"/>
         <geom name="caterpillar_arm" type="mesh" mesh="caterpillar_arm"
               material="caterpillar_arm" pos="0 0 0" euler="0 0 0"/>
+        <inertial pos="2.179 0 0.047" mass="4000" diaginertia="80 6200 6200"/>
 
         <!-- Caterpillar/Blade piston tube -->
         <body name="caterpillar_blade_piston_tube" pos="2.700 0 0.322" euler="0 -26.387 0">
           <joint name="caterpillar_blade_piston_tube" type="hinge" axis="0 1 0" pos="0 0 0"/>
           <geom name="caterpillar_blade_piston_tube" type="mesh" mesh="caterpillar_blade_piston_tube"
                 material="caterpillar_blade_piston_tube" pos="0 0 0" euler="0 0 0"/>
+          <inertial pos="0.942 0 0" mass="400" diaginertia="2.9 67 67"/>
 
           <!-- Caterpillar/Blade piston rod -->
           <body name="caterpillar_blade_piston_rod" pos="1.032 0 0" euler="0 0 0">
@@ -104,6 +108,7 @@ Copyright, 2023, Vilella Kenny.
                    ref="1.032" range="0.9 1.35" pos="0 0 0"/>
             <geom name="caterpillar_blade_piston_rod" type="mesh" mesh="caterpillar_blade_piston_rod"
                   material="caterpillar_blade_piston_rod" pos="0 0 0" euler="0 0 0"/>
+            <inertial pos="0.476 0 0" mass="200" diaginertia="0.4 11 11"/>
           </body> <!-- Caterpillar/Blade piston rod -->
         </body> <!-- Caterpillar/Blade piston tube -->
       </body> <!-- Caterpillar arm-->
@@ -112,6 +117,8 @@ Copyright, 2023, Vilella Kenny.
       <body name="chassis" pos="0 0 0.722" euler="0 0 0">
         <geom name="chassis" type="mesh" mesh="chassis" material="chassis"
               pos="0 0 0" euler="0 0 0"/>
+        <inertial pos="-0.257 0.024 1.640" mass="38000"
+                  fullinertia="70000 110000 100000 100 7000 -2000"/>
 
         <!-- Chassis/Blade piston rod -->
         <body name="chassis_blade_piston_rod" pos="2.544 0 1.301" euler="0 70.559 0">
@@ -119,12 +126,15 @@ Copyright, 2023, Vilella Kenny.
                  ref="2.544" range="1.144 2.544" pos="0 0 0"/>
           <geom name="chassis_blade_piston_rod" type="mesh" mesh="chassis_blade_piston_rod"
                 material="chassis_blade_piston_rod" pos="0 0 0" euler="0 0 0"/>
+          <inertial pos="1.033 0 0" mass="250" diaginertia="0.4 50 50"/>
 
           <!-- Blade -->
           <body name="blade" pos="1.649 0 0" euler="0 -70.559 0">
             <joint name="blade" type="hinge" axis="0 1 0" pos="0 0 0"/>
             <geom name="blade" type="mesh" mesh="blade"
                   material="blade" pos="0 0 0" euler="0 0 0"/>
+            <inertial pos="0.669 0 0.417" mass="13000"
+                      fullinertia="35000 7500 32000 -0.08 1500 0.1"/>
           </body> <!-- Blade -->
         </body> <!-- Chassis/Blade piston rod -->
       </body> <!-- Chassis -->
