@@ -31,7 +31,7 @@ The different parts of the bulldozer are shown below.
 \
 \
 \
-The names of the different parts given in this schematic follows the selected convention and would be used throughouth this simulator.
+The names of the different parts given in this schematic follows the selected convention and would be used throughout this simulator.
 Moreover, the joints connecting all the parts are also named and would be used to make the description easier.
 In the following, the geometry of each part would be described.
 
@@ -121,7 +121,7 @@ Below is the Cartesian coordinates of the important points of the caterpillar ar
 | Points | Coordinates       |
 | ------ | ----------------- |
 | **D**  | (0, 0, 0)         |
-| **E**  | (1.661, 0, 0.322) |
+| **E**  | (2.970, 0, 0.322) |
 | **G**  | (4.361, 0, 0)     |
 
 ### Caterpillar arm/Blade hydraulic piston
@@ -188,11 +188,11 @@ Wheels are assumed to be particularly heavy in order to avoid bouncing.
 Customized friction is added such that it creates a softer contact between the wheels and the floor.
 
 A motor actuation is then added to each set of wheels.
-Right and left crawler can then be actuated separatly as it is the case for the real machine.
+Right and left crawler can then be actuated separately as it is the case for the real machine.
 
 Overall, the simulated locomotion seems to be quite different from what may be expected.
-In particular, the bulldozer bounces more than it should and it may occasionnaly stay stuck.
-Improving the locomotion would probably require parameter optimization against experimental data to measure the perfromance of the simulated bulldozer against a real machine.
+In particular, the bulldozer bounces more than it should and it may occasionally stay stuck.
+Improving the locomotion would probably require parameter optimization against experimental data to measure the perfomance of the simulated bulldozer against a real machine.
 This is however clearly out of the scope of this project.
 
 ## Inertia calculation
