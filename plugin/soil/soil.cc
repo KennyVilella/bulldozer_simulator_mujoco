@@ -57,6 +57,36 @@ Soil* Soil::Create(const mjModel* m, mjData* d, int instance) {
         mju_error(
             "Soil plugin: Invalid ``amp_noise`` parameter specification");
 
+    // Setting HFields and blade id
+    int blade_id = mj_name2id(m, mjOBJ_BODY, "blade");
+    int terrain_id = mj_name2id(m, mjOBJ_HFIELD, "terrain");
+    int blade_soil_id = mj_name2id(m, mjOBJ_HFIELD, "blade soil");
+
+    // Checking blade and HField
+    if (blade_id == -1)
+        mju_error("Soil plugin: No ``blade`` has been detected");
+    if (terrain_id == -1)
+        mju_error("Soil plugin: No ``terrain`` HField has been detected");
+    if (blade_soil_id == -1)
+        mju_error("Soil plugin: No ``blade soil`` HField has been detected");
+
+    // Checking consistency of HFields
+    if (m->hfield_nrow[terrain_id] != m->hfield_nrow[blade_soil_id])
+        mju_error("Soil plugin: Inconsistent number of rows between "
+            "``terrain`` and ``blade soil`` HFields");
+    if (m->hfield_ncol[terrain_id] != m->hfield_ncol[blade_soil_id])
+        mju_error("Soil plugin: Inconsistent number of columns between "
+            "``terrain`` and ``blade soil`` HFields");
+    if (m->hfield_size[4*terrain_id] != m->hfield_size[4*blade_soil_id])
+        mju_error("Soil plugin: Inconsistent size in the X direction between "
+            "``terrain`` and ``blade soil`` HFields");
+    if (m->hfield_size[4*terrain_id+1] != m->hfield_size[4*blade_soil_id+1])
+        mju_error("Soil plugin: Inconsistent size in the Y direction between "
+            "``terrain`` and ``blade soil`` HFields");
+    if (m->hfield_size[4*terrain_id+2] != m->hfield_size[4*blade_soil_id+2])
+        mju_error("Soil plugin: Inconsistent size in the Z direction between "
+            "``terrain`` and ``blade soil`` HFields");
+
     return new Soil(m, d, instance);
 }
 
