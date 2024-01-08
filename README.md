@@ -29,7 +29,7 @@ To run the simulator, simply execute the following command
 ```
 
 A window will open with the bulldozer.
-It is suggested to toggle on the "Wireframe" view in the "Rendering" section in order to better visualize the soil.
+It is suggested to toggle on the "Wireframe" view in the "Rendering" section in order to better visualize the soil, and to toggle off the "Geom 1" group in the "Group enable" section to remove the visualization of the virtual wheels.
 The bulldozer can be actuated using the three sliders in the "Control" section.
 Note that the bulldozer locomotion may be challenging on rugged terrain (for more details, see the "Locomotion" section of the [model README](model/bulldozer/README.md)).
 
@@ -37,7 +37,6 @@ Note that the bulldozer locomotion may be challenging on rugged terrain (for mor
 There are several important features that are yet to be implemented.
 These include, in order of priority:
 
-- Improve the soil plugin. In particular, add more check to ensure the plugin is properly connected.
 - Improve bulldozer locomotion.
 - Add reaction force from the soil.
 
